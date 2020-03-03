@@ -1,0 +1,7 @@
+Hello ${PERSON_NAME}, 
+
+The exchange rate is higher than 45 rupees.
+This is a good time to send money to India.
+
+Yours Truly,
+Arv
