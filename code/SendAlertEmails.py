@@ -6,14 +6,14 @@ from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-MY_ADDRESS = 'aravin0506@gmail.com'
-PASSWORD = 'Aravind@1995'
+MY_ADDRESS = 'blah'
+PASSWORD = 'blah'
 
 contactsDir = Path("/Users/aravindmadanagopal/Documents/Personal/Personal_projects/resources")
 contactsList = contactsDir / "contacts.txt"
 
 emailDir = Path("/Users/aravindmadanagopal/Documents/Personal/Personal_projects/resources")
-emailList = emailDir / "email_template.txt"
+emailTemp = emailDir / "email_template.txt"
 
 
 def get_contacts(contactsList):
@@ -26,8 +26,8 @@ def get_contacts(contactsList):
     return names, emails
 
 
-def read_template(emailList):
-    with open(emailList, 'r', encoding='utf-8') as template_file:
+def read_template(emailTemp):
+    with open(emailTemp, 'r', encoding='utf-8') as template_file:
         template_file_content = template_file.read()
         print(template_file_content)
     return Template(template_file_content)
@@ -35,7 +35,7 @@ def read_template(emailList):
 
 def main():
     names, emails = get_contacts(contactsList)  # read contacts
-    message_template = read_template(emailList)
+    message_template = read_template(emailTemp)
 
     # set up the SMTP server
     s = smtplib.SMTP(host='smtp.gmail.com', port=587)
@@ -43,7 +43,7 @@ def main():
     s.login(MY_ADDRESS, PASSWORD)
 
     # For each contact, send the email:
-    for name, email in zip(names, emails):
+    for name, email in names, emails:
         msg = MIMEMultipart()  # create a message
 
         # add in the actual person name to the message template
